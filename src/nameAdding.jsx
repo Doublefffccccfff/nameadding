@@ -25,7 +25,7 @@ const NameAdding = () => {
           onChange={(e) => setName(e.target.value)}
           placeholder="Enter your first name"
           required
-          pattern="[A-Za-z]+"
+          
           className="block w-full p-2 mb-4 border rounded"
         />
         <input
@@ -34,7 +34,7 @@ const NameAdding = () => {
           onChange={(e) => setLastName(e.target.value)}
           placeholder="Enter your last name"
           required
-          pattern="[A-Za-z]+"
+          
           className="block w-full p-2 mb-4 border rounded"
         />
         <button
