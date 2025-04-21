@@ -1,11 +1,12 @@
 
 import './App.css';
-import LocationSelector from './SelectedCounter';
+import NameAdding from './nameAdding';
+
 
 function App() {
   return (
     <div>
-      <LocationSelector/>
+      <NameAdding/>
     </div>
   );
 }
