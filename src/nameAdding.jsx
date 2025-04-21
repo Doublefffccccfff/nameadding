@@ -12,7 +12,7 @@ const NameAdding = () => {
 
   return (
     <div className="p-6 max-w-md mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Add Name</h2>
+      <h2 className="text-2xl font-bold mb-4">Full Name Display</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -39,7 +39,7 @@ const NameAdding = () => {
       </form>
       {displayName && (
         <p className="mt-4 text-lg font-medium">
-          {name} {lastName}
+          FullName: {name} {lastName}
         </p>
       )}
     </div>
