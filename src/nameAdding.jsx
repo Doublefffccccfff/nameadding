@@ -3,10 +3,15 @@ import { useState } from "react";
 const NameAdding = () => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [submittedFirstName, setSubmittedFirstName] = useState("");
+  const [submittedLastName, setSubmittedLastName] = useState("");
   const [displayName, setDisplayName] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // copy current inputs into “submitted” state
+    setSubmittedFirstName(name);
+    setSubmittedLastName(lastName);
     setDisplayName(true);
   };
 
@@ -20,6 +25,7 @@ const NameAdding = () => {
           onChange={(e) => setName(e.target.value)}
           placeholder="Enter your first name"
           required
+          pattern="[A-Za-z]+"
           className="block w-full p-2 mb-4 border rounded"
         />
         <input
@@ -28,6 +34,7 @@ const NameAdding = () => {
           onChange={(e) => setLastName(e.target.value)}
           placeholder="Enter your last name"
           required
+          pattern="[A-Za-z]+"
           className="block w-full p-2 mb-4 border rounded"
         />
         <button
@@ -39,7 +46,7 @@ const NameAdding = () => {
       </form>
       {displayName && (
         <p className="mt-4 text-lg font-medium">
-          FullName: {name} {lastName}
+          FullName: {submittedFirstName} {submittedLastName}
         </p>
       )}
     </div>
