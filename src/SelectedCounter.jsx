@@ -11,12 +11,15 @@ const LocationSelector = () => {
   const [selectedCity, setSelectedCity] = useState("");
 
   useEffect(() => {
-    axios.get("https://crio-location-selector.onrender.com/countries")
+    axios
+      .get("https://crio-location-selector.onrender.com/countries")
       .then((response) => {
         setCountries(response.data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch countries:", error);
       });
-    console.log(countries)
-  },[] );
+  }, []);
 
   const handleCountryChange = (e) => {
     const country = e.target.value;
@@ -27,9 +30,13 @@ const LocationSelector = () => {
     setCities([]);
 
     if (country) {
-      axios.get(`https://crio-location-selector.onrender.com/country=${country}/states`)
+      axios
+        .get(`https://crio-location-selector.onrender.com/country=${country}/states`)
         .then((response) => {
           setStates(response.data);
+        })
+        .catch((error) => {
+          console.error(`Failed to fetch states for ${country}:`, error);
         });
     }
   };
@@ -41,9 +48,13 @@ const LocationSelector = () => {
     setCities([]);
 
     if (selectedCountry && state) {
-      axios.get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${state}/cities`)
+      axios
+        .get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${state}/cities`)
         .then((response) => {
           setCities(response.data);
+        })
+        .catch((error) => {
+          console.error(`Failed to fetch cities for ${state} in ${selectedCountry}:`, error);
         });
     }
   };
@@ -62,7 +73,7 @@ const LocationSelector = () => {
         className="block w-full p-2 mb-4 border rounded"
       >
         <option value="">Select Country</option>
-        {countries.map((country, index) => (
+        {countries.map((country) => (
           <option key={country} value={country}>{country}</option>
         ))}
       </select>
@@ -74,7 +85,7 @@ const LocationSelector = () => {
         disabled={!states.length}
       >
         <option value="">Select State</option>
-        {states.map((state, index) => (
+        {states.map((state) => (
           <option key={state} value={state}>{state}</option>
         ))}
       </select>
@@ -86,14 +97,15 @@ const LocationSelector = () => {
         disabled={!cities.length}
       >
         <option value="">Select City</option>
-        {cities.map((city, index) => (
+        {cities.map((city) => (
           <option key={city} value={city}>{city}</option>
         ))}
       </select>
 
       {selectedCountry && selectedState && selectedCity && (
         <div className="mt-4 text-lg">
-          You selected: {selectedCity}, {selectedState}, {selectedCountry}
+            You selected {selectedCity}, {selectedState}, {selectedCountry}
+          
         </div>
       )}
     </div>
