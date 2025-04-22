@@ -45,10 +45,10 @@ const NameAdding = () => {
         </button>
       </form>
       {displayName && (
-        <p className="mt-4 text-lg font-medium">
-          FullName: {submittedFirstName} {submittedLastName}
-        </p>
-      )}
+  <p className="mt-4 text-lg font-medium">
+    Full Name: {submittedFirstName} {submittedLastName}
+  </p>
+)}
     </div>
   );
 };
